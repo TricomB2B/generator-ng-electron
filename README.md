@@ -1,4 +1,4 @@
-# generator-ng-electron [![NPM version]
+# generator-ng-electron
 
 > Generator for an Electron wrapper app around an Angular web app.
 
