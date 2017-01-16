@@ -1,38 +1,44 @@
-# generator-tricom [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> Generator for TricomB2B&#39;s hybrid app platform
+# generator-ng-electron [![NPM version]
+
+> Generator for an Electron wrapper app around an Angular web app.
+
+Wraps an Angular application (you'll be prompted for a GitHub repository) with our custom [electron-boilerplate](https://github.com/TricomB2B/electron-boilerplate). Makes setup of this process a breeze.
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-tricom using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and [node.js](https://nodejs.org/)).
 
-```bash
-npm install -g yo
-npm install -g generator-tricom
+This generator is currently not available on the NPM registry. So you must clone and link manually:
+
+```sh
+$ git clone git@github.com:TricomB2B/generator-ng-electron.git ~/Projects/generator-ng-electron
+$ cd ~/Projects/generator-ng-electron
+$ yarn
+.... stuff happening
+$ npm link
 ```
 
-Then generate your new project:
+## Usage
 
-```bash
-yo tricom
+Generate your new project:
+
+```sh
+$ mkdir ~/Projects/great-project
+$ cd ~/Projects/great-project
+$ yo ng-electron
 ```
 
-## Getting To Know Yeoman
+You'll be prompted for the necessary information. The generator will
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+- Download the electron-boilerplate.
+- Install your Angular application to the correct location.
+- Make the necessary file edits to make the web app work within Electron.
+- Install electron-boilerplate dependencies.
+- Start a dev instance of the app.
+
+Super easy.
+
 
 ## License
 
 unlicense © [TricomB2B](http://www.tricomb2b.com)
-
-
-[npm-image]: https://badge.fury.io/js/generator-tricom.svg
-[npm-url]: https://npmjs.org/package/generator-tricom
-[travis-image]: https://travis-ci.org/TricomB2B/generator-tricom.svg?branch=master
-[travis-url]: https://travis-ci.org/TricomB2B/generator-tricom
-[daviddm-image]: https://david-dm.org/TricomB2B/generator-tricom.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/TricomB2B/generator-tricom
-[coveralls-image]: https://coveralls.io/repos/TricomB2B/generator-tricom/badge.svg
-[coveralls-url]: https://coveralls.io/r/TricomB2B/generator-tricom
