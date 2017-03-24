@@ -56,27 +56,31 @@ module.exports = class extends Generator {
 
     return download(props.boilerplate, this.destinationPath())
       .then(() => {
-        return this.spawnCommandSync('rm', ['./boilerplate/app/index.html', './boilerplate/app/index.css']);
+        return fsp.remove('boilerplate/app');
       })
       .then(() => {
-        return download(props.ngRepo, this.destinationPath('boilerplate/app'), { clone: true });
+        return download(props.ngRepo, this.destinationPath('boilerplate/tmp'), { clone: true });
+      })
+      .then(() => {
+        return fsp.copy('boilerplate/tmp/dist', 'boilerplate/app');
+      })
+      .then(() => {
+        return fsp.remove('boilerplate/tmp');
       })
       .then(() => {
         p1 = fsp
           .readFile(this.destinationPath('boilerplate/app/index.html'), 'utf8')
           .then((data) => {
             let newFile = data.replace('<base href="/">', '');
-            newFile     = newFile.replace('<script src="dist/js/app.min.js"></script>', '<script src="dist/js/app.js"></script>');
-
             return fsp.writeFile(this.destinationPath('boilerplate/app/index.html'), newFile);
           });
 
         p2 = fsp
-          .readFile(this.destinationPath('boilerplate/app/dist/js/app.js'), 'utf8')
+          .readFile(this.destinationPath('boilerplate/app/js/bundle.js'), 'utf8')
           .then((data) => {
-            let newFile = data.replace('$locationProvider.html5Mode(true);', '$locationProvider.html5Mode(false);');
+            let newFile = data.replace('html5Mode(!0)', 'html5Mode(0)');
 
-            return fsp.writeFile(this.destinationPath('boilerplate/app/dist/js/app.js'), newFile);
+            return fsp.writeFile(this.destinationPath('boilerplate/app/js/bundle.js'), newFile);
           });
 
         return Promise.all([p1, p2]);
